@@ -12,12 +12,12 @@ const COLORS = {
   danger: "#E88FAA", success: "#7DC9A8", warning: "#F5D78A",
 };
 
-const CATEGORIAS = ["Comida", "Transporte", "Salud", "EducaciÃ³n", "Entretenimiento", "Hogar", "Ropa", "Otros"];
+const CATEGORIAS = ["Comida", "Transporte", "Salud", "Educacion", "Entretenimiento", "Hogar", "Ropa", "Otros"];
 
 const DATA_INICIAL = {
   ingresos: [],
   gastos: [],
-  presupuestos: { Comida: 120000, Transporte: 60000, Salud: 40000, EducaciÃ³n: 30000, Entretenimiento: 25000, Hogar: 80000, Ropa: 20000, Otros: 30000 },
+  presupuestos: { Comida: 120000, Transporte: 60000, Salud: 40000, Educacion: 30000, Entretenimiento: 25000, Hogar: 80000, Ropa: 20000, Otros: 30000 },
   tarjetas: [
     { id: 1, nombre: "Tarjeta 1", color: "#C4A8E8", fijos: [], cuotas: [] },
     { id: 2, nombre: "Tarjeta 2", color: "#F5C6D8", fijos: [], cuotas: [] },
@@ -133,7 +133,7 @@ function TabResumen({ data }) {
 
 // â”€â”€â”€ TAB: GASTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function TabGastos({ data, saveData }) {
-  const [form, setForm] = useState({ descripcion: "", monto: "", categoria: "Comida", quien: "Ã©l", fecha: new Date().toISOString().split("T")[0] });
+  const [form, setForm] = useState({ descripcion: "", monto: "", categoria: "Comida", quien: "el", fecha: new Date().toISOString().split("T")[0] });
   const [showForm, setShowForm] = useState(false);
   const [tab, setTab] = useState("gastos");
 
@@ -145,7 +145,7 @@ function TabGastos({ data, saveData }) {
     } else {
       saveData({ ingresos: [nuevo, ...(data.ingresos || [])] });
     }
-    setForm({ descripcion: "", monto: "", categoria: "Comida", quien: "Ã©l", fecha: new Date().toISOString().split("T")[0] });
+    setForm({ descripcion: "", monto: "", categoria: "Comida", quien: "el", fecha: new Date().toISOString().split("T")[0] });
     setShowForm(false);
   };
 
@@ -169,10 +169,10 @@ function TabGastos({ data, saveData }) {
         <Btn onClick={() => setShowForm(true)} style={{ width: "100%", justifyContent: "center", marginBottom: 14 }}>+ Agregar {tab === "gastos" ? "gasto" : "ingreso"}</Btn>
       ) : (
         <Card style={{ background: COLORS.lavanda }}>
-          <Inp label="DescripciÃ³n" value={form.descripcion} onChange={e => setForm(f => ({ ...f, descripcion: e.target.value }))} placeholder="Ej: Supermercado" />
+          <Inp label="Descripcin" value={form.descripcion} onChange={e => setForm(f => ({ ...f, descripcion: e.target.value }))} placeholder="Ej: Supermercado" />
           <Inp label="Monto ($)" type="number" value={form.monto} onChange={e => setForm(f => ({ ...f, monto: e.target.value }))} placeholder="0" />
           {tab === "gastos" && (
-            <Sel label="CategorÃ­a" value={form.categoria} onChange={e => setForm(f => ({ ...f, categoria: e.target.value }))}>
+            <Sel label="Categoria" value={form.categoria} onChange={e => setForm(f => ({ ...f, categoria: e.target.value }))}>
               {CATEGORIAS.map(c => <option key={c}>{c}</option>)}
             </Sel>
           )}
